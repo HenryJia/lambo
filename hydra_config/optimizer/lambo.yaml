@@ -16,3 +16,4 @@ window_size: 1
 latent_init: null
 pretrain_extra_data: False
 online_extra_data: False
+use_kmeans: False
