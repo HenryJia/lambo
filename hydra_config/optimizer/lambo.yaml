@@ -13,4 +13,5 @@ optimize_latent: True
 position_sampler: uniform
 entropy_penalty: 1e-2
 window_size: 1
+latent_init: null
 use_kmeans: False
