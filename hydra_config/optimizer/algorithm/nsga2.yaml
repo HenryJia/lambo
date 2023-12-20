@@ -4,8 +4,7 @@ n_offsprings: null
 sampling:
   _target_: lambo.optimizers.sampler.CandidateSampler
 crossover:
-  _target_: pymoo.factory.get_crossover
-  name: int_sbx
+  _target_: pymoo.operators.crossover.sbx.SBX
   prob: 0.
   eta: 16
 mutation:

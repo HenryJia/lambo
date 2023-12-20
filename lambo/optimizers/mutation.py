@@ -2,7 +2,7 @@ import numpy as np
 
 import torch
 
-from pymoo.factory import get_mutation
+from pymoo.operators.mutation.pm import PM
 from pymoo.core.mutation import Mutation
 
 from lambo import utils
@@ -91,7 +91,7 @@ class UniformMutation(Mutation):
 class LocalMutation(Mutation):
     def __init__(self, eta, prob, tokenizer=None, mlm_obj=None, safe_mut=False):
         super().__init__()
-        self.poly_mutation = get_mutation('int_pm', eta=eta, prob=prob)
+        self.poly_mutation = PM(eta=eta, prob=prob)
         self.tokenizer = tokenizer
         self.mlm_obj = mlm_obj
         self.safe_mut = safe_mut

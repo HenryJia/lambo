@@ -52,6 +52,11 @@ class RegexTask(BaseTask):
         x_cands, x_seqs, f_vals = [], [], []
         for query_pt in x:
             cand_idx, mut_pos, mut_res_idx, op_idx = query_pt
+            cand_idx = int(cand_idx)
+            mut_pos = int(mut_pos)
+            mut_res_idx = int(mut_res_idx)
+            op_idx = int(op_idx)
+
             op_type = self.op_types[op_idx]
             base_candidate = self.candidate_pool[cand_idx]
             base_seq = base_candidate.mutant_residue_seq

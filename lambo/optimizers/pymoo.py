@@ -7,7 +7,8 @@ import pandas as pd
 
 from botorch.utils.multi_objective import pareto, infer_reference_point
 
-from pymoo.factory import get_termination, get_performance_indicator
+from pymoo.termination import get_termination
+from pymoo.indicators.hv import HV
 from pymoo.optimize import minimize
 
 from lambo.tasks.surrogate_task import SurrogateTask
@@ -305,7 +306,7 @@ class SequentialGeneticOptimizer(object):
             wandb.log(record)
 
     def _log_optimizer_metrics(self, normed_targets, round_idx, num_bb_evals, start_time, log_prefix):
-        hv_indicator = get_performance_indicator('hv', ref_point=self._ref_point)
+        hv_indicator = HV(ref_point=self._ref_point)
         new_hypervol = hv_indicator.do(normed_targets)
         self._hv_ref = new_hypervol if self._hv_ref is None else self._hv_ref
         metrics = dict(
