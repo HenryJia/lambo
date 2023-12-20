@@ -17,6 +17,11 @@ class SurrogateTask(BaseTask):
         candidates = []
         for query_pt in query_batches.reshape(-1, num_vars):
             cand_idx, mut_pos, mut_res_idx, op_idx = query_pt
+            cand_idx = int(cand_idx)
+            mut_pos = int(mut_pos)
+            mut_res_idx = int(mut_res_idx)
+            op_idx = int(op_idx)
+
             op_type = self.op_types[op_idx]
             base_seq = self.candidate_pool[cand_idx].mutant_residue_seq
             mut_pos = mut_pos % len(base_seq)

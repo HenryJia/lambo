@@ -102,7 +102,7 @@ class LocalMutation(Mutation):
         flat_queries = query_batches.reshape(-1, num_vars)
         num_samples = flat_queries.shape[0]
 
-        x0 = flat_queries[..., 0]
+        x0 = flat_queries[..., 0].astype(int)
         seqs = [problem.candidate_pool[i].mutant_residue_seq for i in x0]
 
         mut_x = self.poly_mutation._do(problem, x)
