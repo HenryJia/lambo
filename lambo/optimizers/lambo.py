@@ -8,7 +8,7 @@ import random
 
 from torch.nn import functional as F
 
-from pymoo.factory import get_performance_indicator
+from pymoo.indicators.hv import HV
 
 from botorch.utils.multi_objective import infer_reference_point
 
@@ -488,7 +488,7 @@ class LaMBO(object):
             wandb.log(record)
 
     def _log_optimizer_metrics(self, normed_targets, round_idx, num_bb_evals, start_time, log_prefix):
-        hv_indicator = get_performance_indicator('hv', ref_point=self._ref_point)
+        hv_indicator = HV(ref_point=self._ref_point)
         new_hypervol = hv_indicator.do(normed_targets)
         self._hv_ref = new_hypervol if self._hv_ref is None else self._hv_ref
         metrics = dict(
